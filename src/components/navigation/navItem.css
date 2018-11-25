@@ -1,0 +1,16 @@
+a{
+	font-family:"Segoe UI";
+	font-size:1.1em;
+
+}
+
+a:link, a:visited {
+	color:#3D138D;
+	font-weight:500;
+	text-decoration:none;
+
+}
+
+a:hover {
+	text-decoration:underline;
+}
