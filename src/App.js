@@ -7,10 +7,24 @@ import Loading from './components/control/loading';
 // import Banner from './components/banner';
 // import Infographic from './components/infographic';
 
-import {Grommet} from 'grommet';
+import {Grommet,Grid,Box} from 'grommet';
 import { BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 
+const gridAreas = [
+	{
+		name:"header",
+		start:[0,0],
+		end:[7,0]
+	},
+	{
+		name:"content",
+		start:[1,1],
+		end:[6,1]
+	}
+]
 
+const gridRows = ["50px","flex"];
+const gridCols = ["1fr","1fr","1fr","1fr","1fr","1fr","1fr","1fr"]
 
 /*TO DO nEXT TIME
  EXPAND THE RADAR DATA TO A LIST OR KEY VALUE PAIRS
@@ -22,10 +36,10 @@ const STATE = {fileinput:0,showData:1};
 Object.freeze(STATE);
 
 const style = {
-	display:"flex",
-	flexFlow:"column",
-	alignItems:"center",
-	justifyContent:"between",
+	// display:"flex",
+	// flexFlow:"column",
+	// alignItems:"center",
+	// justifyContent:"between",
 	backgroundColor:"#FFF6E1",
 }
 
@@ -53,21 +67,25 @@ class App extends Component {
 					full={true}
 					style={style}
 				>
-					<Navigation/>
-					<Suspense fallback={<Loading msg="loading page" warnTime={5000}/>}>
-						<Switch>
-							<Route path="/" exact component={Input} />
-							<Route path="/about" component={About}/>
-							<Route path="/sample" component={Insights} />
-							<Route path="/insight" component={Insights} />
-						</Switch>
-					</Suspense>
+					<Grid areas={gridAreas} rows={gridRows} columns={gridCols}>
+						<Box gridArea="header">
+							<Navigation/>
+						</Box>
+						<Box gridArea="content">
+							<Suspense fallback={<Loading msg="loading page" warnTime={5000}/>}>
+								<Switch>
+									<Route path="/" exact component={Input} />
+									<Route path="/about" component={About}/>
+									<Route path="/sample" component={Insights} />
+									<Route path="/insight" component={Insights} />
+								</Switch>
+							</Suspense>						
+						</Box>
+					</Grid>
 				</Grommet>
 		 	</Router>
 		);
 	}
 }
-
-
 
 export default App;

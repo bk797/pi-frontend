@@ -31,7 +31,7 @@ class Input extends React.Component {
 			  		align="center" 
 			  		justify="between"
 			  		fill="vertical"
-			  		width="80%"
+			  		// width="80%"
 			  		elevation="small"
 			  		pad="xsmall"
 			  	>
