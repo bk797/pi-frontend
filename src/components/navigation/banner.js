@@ -1,8 +1,13 @@
+//@flow
 import React from 'react';
 
 import {Heading} from 'grommet';
 
-const Banner = ({label}) => {
+type Props = {
+	label:string
+};
+
+const Banner = ({label}:Props) => {
 	return (	
 		<Heading 
 			level="1"

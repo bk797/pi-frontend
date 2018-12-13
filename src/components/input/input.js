@@ -1,26 +1,40 @@
+//@flow
 import React from 'react';
 
 import InputFB from './input-types/input-fb';
 import InputText from './input-types/input-text';
 
+import FormInput from '../../class/form-input';
+
 import {Box,Tabs,Tab} from 'grommet';
 import {Redirect} from 'react-router-dom';
-import {curry} from 'ramda';
+
+type Props = {}
+
+type State = {
+	redirect: boolean,
+	data:FormInput
+}
 
 const initialState = {redirect:false,data:{}};
 
-class Input extends React.Component {
+class Input extends React.Component<Props,State> {
 
-	constructor(props){
+	constructor(props:Props){
 		super(props);
 		this.state = initialState;
 	}
 
-	transitionState = curry((type,data) => this.setState({redirect:true,data:{type,data}}));
+	// transitionState = curry((type:string,data:FormInput):void => this.setState({redirect:true,data:{type,data}}));
 
-	sendFb = this.transitionState('fb');
+	transitionState = (type:string):(FormInput=> void) => {
+		const component = this;
+		return (data:FormInput):void => component.setState({redirect:true,data:{type,data}});
+	}
 
-	sendText = this.transitionState('txt');
+	sendFb:(FormInput=>void) = this.transitionState('fb');
+
+	sendText:(FormInput=>void) = this.transitionState('txt');
 
 	render(){
 		const {redirect, data} = this.state;

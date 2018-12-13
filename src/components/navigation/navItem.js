@@ -1,9 +1,16 @@
+//@flow
 import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './navItem.css';
 
-const NavItem = (props) =>{
+type Props = {
+	to:string,
+	label:string,
+	navState?:{} //fix this
+};
+
+const NavItem = (props:Props) =>{
 	const {to,label,navState} = props;
 
 	return(

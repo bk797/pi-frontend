@@ -7,12 +7,6 @@ const info = `
 [Information on personality insights](https://console.bluemix.net/docs/services/personality-insights/models.html#models)
 `;
 
-const About = () =>{
-
-	return(
-		<Markdown>{info}</Markdown>
-	);
-
-}
+const About = () =>	<Markdown>{info}</Markdown>
 
 export default About;

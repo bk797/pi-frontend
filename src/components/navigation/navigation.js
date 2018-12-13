@@ -1,10 +1,11 @@
+//@flow
 import React from 'react';
 
 import NavItem from './navItem';
 
 import {Box} from 'grommet';
 
-const Navigation = (props) => {
+const Navigation = () => {
 	
 	return (
 		<Box

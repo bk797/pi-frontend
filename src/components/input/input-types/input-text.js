@@ -1,19 +1,34 @@
+//@flow
 import React from 'react';
 
+import FormInput from '../../../class/form-input';
+
 import {TextArea, TextInput, Button,Text} from 'grommet';
-import {curry} from 'ramda';
+
+type Props = {
+	onSubmit: (FormInput) => void,
+};
+
+type State = {
+	text:string,
+	name:string
+};
 
 const initialState = {text:'',name:''};
 
-class InputText extends React.Component {
+class InputText extends React.Component<Props,State> {
 
-	constructor(props){
+	constructor(props: Props){
 		super(props);
 		this.state = initialState;
 	}
 
+	updateValue = (key:string):(SyntheticEvent<HTMLInputElement>=>void) => {
+		return (event:SyntheticEvent<HTMLInputElement>):void => this.setState({[key]:event.currentTarget.value});
+	}
+
 	//updates the a state k-v pair
-	updateValue = curry((key,event)=>this.setState({[key]:event.target.value}));
+	// updateValue = curry((key,event)=>this.setState({[key]:event.target.value}));
 	updateText = this.updateValue('text');
 	updateName = this.updateValue('name');
 
@@ -21,7 +36,7 @@ class InputText extends React.Component {
 	onSubmit = () => this.props.onSubmit({txt:this.state.text,name:this.state.name});
 
 	//count the number of words in a string (groups of characters separated by whitespace)
-	wordCount = string => string.trim() === "" ? 0 : string.trim().split(/\s+/).length;
+	wordCount = (text:string) => text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
 
 	render(){
 		const {text,name} = this.state;

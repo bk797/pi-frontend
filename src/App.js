@@ -36,10 +36,6 @@ const STATE = {fileinput:0,showData:1};
 Object.freeze(STATE);
 
 const style = {
-	// display:"flex",
-	// flexFlow:"column",
-	// alignItems:"center",
-	// justifyContent:"between",
 	backgroundColor:"#FFF6E1",
 }
 
@@ -67,7 +63,7 @@ class App extends Component {
 					full={true}
 					style={style}
 				>
-					<Grid areas={gridAreas} rows={gridRows} columns={gridCols}>
+					<Grid fill="horizontal" areas={gridAreas} rows={gridRows} columns={gridCols}>
 						<Box gridArea="header">
 							<Navigation/>
 						</Box>
